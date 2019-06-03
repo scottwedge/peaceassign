@@ -8,7 +8,8 @@ class UserRegister(Resource):
     
     def get(self):
         user = UserModel.query.all()
-        print(user)
+        for i in user:
+            print(user.json())
         return json.loads(user).json(), 200
     
     def post(self, data):
