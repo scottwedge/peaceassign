@@ -5,18 +5,18 @@ class UserModel(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(80))
-    lastname = db.Column(db.String(80))
+    first_name = db.Column(db.String(80))
+    last_name = db.Column(db.String(80))
     company_name = db.Column(db.String(80))
     city = db.Column(db.String(80))
     state = db.Column(db.String(80))
-    zip_Code = db.Column(db.Integer)
     age = db.Column(db.Integer)
     website = db.Column(db.String(80), unique=True, nullable=False)				
     e_mail = db.Column(db.String(80), unique=True, nullable=False)				
+    zip = db.Column(db.Integer)
     			
 
-    def __init__(self, id, first_name, last_name, company_name, city, state, zip_code, age, website, email, ):
+    def __init__(self, id, first_name, last_name, company_name, city, state, zip, website, email, age):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name

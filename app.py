@@ -41,7 +41,7 @@ def create_tables():
         "web" ,
         "age"
     ]
-    db.engine.execute("DROP TABLE users")
+    
     for item in data:
         my_data = [str(item[field]) for field in fields]
         insert_query = "INSERT INTO users VALUES ({}, '{}', '{}', '{}', '{}', '{}', {}, '{}', '{}', {})".format(my_data[0], my_data[1], my_data[2], my_data[3], my_data[4], my_data[5], my_data[6], my_data[7], my_data[8], my_data[9])
