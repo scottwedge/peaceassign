@@ -24,7 +24,7 @@ class UserRegister(Resource):
             if 'limit' in request.args:
                 users = users.paginate(request.args.get('page'), request.args.get('limit'), Flase)
             else:
-                users = users.paginate(request.args.get('page'), 5, Flase)
+                users = users.paginate(request.args.get('page'), 5, False)
             return
         result = users_schema.dump(users)
         return jsonify(result.data)
