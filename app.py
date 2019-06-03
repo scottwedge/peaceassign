@@ -43,7 +43,7 @@ def create_tables():
     ]
 
     for item in data:
-        my_data = [item[field] for field in fields]
+        my_data = [str(item[field]) for field in fields]
         print(my_data)
         print(type(my_data))
         insert_query = "INSERT INTO users VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
