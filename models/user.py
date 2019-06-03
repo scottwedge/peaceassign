@@ -12,8 +12,8 @@ class UserModel(db.Model):
     state = db.Column(db.String(80))
     zip_Code = db.Column(db.Integer)
     age = db.Column(db.Integer)
-    website = db.Column(db.String(80) unique=True, nullable=False)				
-    e_mail = db.Column(db.String(80) unique=True, nullable=False)				
+    website = db.Column(db.String(80), unique=True, nullable=False)				
+    e_mail = db.Column(db.String(80), unique=True, nullable=False)				
     			
 
     def __init__(self, id, firstname, lastname, company_name, city, state, zip_code, age, website, email, ):
