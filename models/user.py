@@ -18,14 +18,14 @@ class UserModel(db.Model):
 
     def __init__(self, id, firstname, lastname, company_name, city, state, zip_code, age, website, email, ):
         self.id = id
-    	self.firstname = firstname
-    	self.lastname = lastname
-    	self.company_name = company_name
+        self.firstname = firstname
+        self.lastname = lastname
+        self.company_name = company_name
         self.city = city
         self.state = state
-	    self.zip_code = zip_code
-    	self.age = age
-    	self.email = email
+        self.zip_code = zip_code
+        self.age = age
+        self.email = email
         self.website = website
 
     @classmethod
