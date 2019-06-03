@@ -1,6 +1,6 @@
 import os
 from db import db
-from resources.user import User
+from resources.user import User, UserRegister
 import json
 
 from flask import Flask
@@ -48,6 +48,7 @@ def create_tables():
         db.engine.execute(insert_query)
 
 api.add_resource(User, '/api/users/<int:user_id>')
+api.add_resource(UserRegister, '/api/users')
 
 
 

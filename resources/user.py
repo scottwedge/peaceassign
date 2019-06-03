@@ -5,19 +5,18 @@ from models.user import UserModel
 _user_parser = reqparse.RequestParser()
 
 class UserRegister(Resource):
-    @classmethod
-    def get(cls):
+    
+    def get(self):
         user = UserModel.query.all()
         return user.json(), 200
     
-    @classmethod
-    def post(self):
+    def post(self, data):
         data = _user_parser.parse_args()
 
         if UserModel.find_by_id(data['id']):
             return {"message": "A user with that id already exists"}, 400
 
-        user = UserModel(data['username'], data['password'])
+        user = UserModel(data['id'], data['first_name'])
         user.save_to_db()
 
         return {"message": "User created successfully."}, 201
