@@ -18,10 +18,10 @@ class UserRegister(Resource):
         if 'sort' in request.args:
             if '-' in request.args.get('sort'):
                 param = str(request.args.get('sort'))[1:]
-                users = users.order_by(UserModel.param.desc())
+                users = users.order_by(UserModel[param].desc())
             else:
                 param = str(request.args.get('sort'))
-                users = users.order_by(UserModel.param)
+                users = users.order_by(UserModel[param])
         if 'page' in request.args:
             if 'limit' in request.args:
                 users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
