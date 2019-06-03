@@ -2,22 +2,34 @@ from flask_restful import Resource, reqparse
 from models.user import UserModel
 from models.schema import UserSchema
 from flask import jsonify, request
+from sqlalchemy import literal,or_
+
 _user_parser = reqparse.RequestParser()
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 class UserRegister(Resource):
     
+    @classmethod
     def get(self):
-
-
         users = UserModel.query.all()
+        if 'name' in request.args:
+            users = UserModel.query.filter(or_(literal(request.args.get('name')).contains(UserModel.first_name)), literal(request.args.get('name')).contains(UserModel.last_name)))
+        if 'sort' in request.args:
+            if '-' in request.args.get('sort'):
+                users = users.order_by(UserModel[request.args.get('sort')[1:]].desc())
+            else:
+                users = users.order_by(UserModel[request.args.get('sort')[1:]])
         if 'page' in request.args:
+            if 'limit' in request.args:
+                users = users.paginate(request.args.get('page'), request.args.get('limit'), Flase)
+            else:
+                users = users.paginate(request.args.get('page'), 5, Flase)
             return
         result = users_schema.dump(users)
-        print(result)
         return jsonify(result.data)
 
+    @classmethod
     def post(self):
         data = request.get_json()
 
