@@ -26,7 +26,7 @@ def create_tables():
 
 
 api.add_resource(User, 'api/users/<int:user_id>')
-api.add_resource(UserRegister, 'api/users')
+# api.add_resource(UserRegister, 'api/users')
 
 
 if __name__ == '__main__':
