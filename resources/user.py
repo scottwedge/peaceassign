@@ -1,10 +1,11 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
+from models.schema import UserSchema
 from flask import jsonify
-from schema import UserSchema
 
 _user_parser = reqparse.RequestParser()
-users_schema = UserSchema()
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 class UserRegister(Resource):
     
     def get(self):
