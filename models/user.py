@@ -16,14 +16,14 @@ class UserModel(db.Model):
     e_mail = db.Column(db.String(80), unique=True, nullable=False)				
     			
 
-    def __init__(self, id, firstname, lastname, company_name, city, state, zip_code, age, website, email, ):
+    def __init__(self, id, first_name, last_name, company_name, city, state, zip_code, age, website, email, ):
         self.id = id
-        self.firstname = firstname
-        self.lastname = lastname
+        self.first_name = first_name
+        self.last_name = last_name
         self.company_name = company_name
         self.city = city
         self.state = state
-        self.zip_code = zip_code
+        self.zip = zip
         self.age = age
         self.email = email
         self.website = website
