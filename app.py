@@ -28,7 +28,6 @@ def create_tables():
 api.add_resource(User, '/api/users/<int:user_id>')
 
 
+db.init_app(app)
 if __name__ == '__main__':
-    from db import db
-    db.init_app(app)
     app.run(port=5000, debug=True)
