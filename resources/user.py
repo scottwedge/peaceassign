@@ -12,6 +12,7 @@ class UserRegister(Resource):
     def get(self):
         users = UserModel.query.all()
         result = users_schema.dump(users)
+        print(result)
         return jsonify(result.data), 200
 
     def post(self):
