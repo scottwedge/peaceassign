@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-import json
+from flask import jsonify
 
 _user_parser = reqparse.RequestParser()
 
