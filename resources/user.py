@@ -7,7 +7,7 @@ _user_parser = reqparse.RequestParser()
 class UserRegister(Resource):
     
     def get(self):
-        users = UserModel.query.fetchall()
+        users = UserModel.query.all()
         def result_dict(r):
             return dict(zip(r.keys(), r))
 
