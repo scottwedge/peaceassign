@@ -24,9 +24,9 @@ class UserModel(db.Model):
         self.city = city
         self.state = state
         self.zip = zip
-        self.age = age
         self.email = email
         self.website = website
+        self.age = age
 
     @classmethod
     def find_by_username(cls, username):
