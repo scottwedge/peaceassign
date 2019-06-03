@@ -25,7 +25,6 @@ class UserRegister(Resource):
                 users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
             else:
                 users = users.paginate(int(request.args.get('page')), 5, False)
-            return
         result = users_schema.dump(users)
         return jsonify(result.data)
 
