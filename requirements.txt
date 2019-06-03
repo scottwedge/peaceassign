@@ -4,3 +4,5 @@ Flask-SQLAlchemy
 uwsgi
 psycopg2
 gunicorn
+json
+os
