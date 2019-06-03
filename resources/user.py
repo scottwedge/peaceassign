@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
 from flask import jsonify
-from app import UserSchema
+from schema import UserSchema
 
 _user_parser = reqparse.RequestParser()
 users_schema = UserSchema()
