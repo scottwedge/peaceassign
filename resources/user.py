@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-
+import json
 
 _user_parser = reqparse.RequestParser()
 
@@ -8,7 +8,8 @@ class UserRegister(Resource):
     
     def get(self):
         user = UserModel.query.all()
-        return user.json(), 200
+        print(user)
+        return json.loads(user).json(), 200
     
     def post(self, data):
         data = _user_parser.parse_args()
