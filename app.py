@@ -29,28 +29,6 @@ def create_tables():
 
 api.add_resource(User, '/api/users/<int:user_id>')
 
-data = []
-with open('data.json') as f:
-    for line in f:
-        data.append(json.loads(line))
-
-fields = [
-    "id",
-    "first_name",
-    "last_name",
-    "company_name",
-    "city",
-    "state",
-    "zip",
-    "email",
-    "web" ,
-    "age"
-]
-
-for item in data:
-    my_data = [item[field] for field in fields]
-    insert_query = "INSERT INTO crm VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    db.execute(insert_query, tuple(my_data))
 
 
 db.init_app(app)
