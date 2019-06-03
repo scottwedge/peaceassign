@@ -21,31 +21,7 @@ def hello_world():
 @app.before_first_request
 def create_tables():
     db.create_all()
-    data = []
-    with open('data.json') as f:
-        
-        json_data = json.loads(f.read())
-        for i in range(len(json_data)):
-            data.append(json_data[i])
-            
 
-    fields = [
-        "id",
-        "first_name",
-        "last_name",
-        "company_name",
-        "city",
-        "state",
-        "zip",
-        "email",
-        "web" ,
-        "age"
-    ]
-    
-    for item in data:
-        my_data = [str(item[field]) for field in fields]
-        insert_query = "INSERT INTO users VALUES ({}, '{}', '{}', '{}', '{}', '{}', {}, '{}', '{}', {})".format(my_data[0], my_data[1], my_data[2], my_data[3], my_data[4], my_data[5], my_data[6], my_data[7], my_data[8], my_data[9])
-        db.engine.execute(insert_query)
 
 api.add_resource(User, '/api/users/<int:user_id>')
 api.add_resource(UserRegister, '/api/users')
