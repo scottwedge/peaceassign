@@ -29,6 +29,7 @@ def create_tables():
     data = []
     with open('data.json') as f:
         for line in f:
+            print(line)
             data.append(json.loads(line))
 
     fields = [
