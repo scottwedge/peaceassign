@@ -12,7 +12,7 @@ class UserModel(db.Model):
     state = db.Column(db.String(80))
     age = db.Column(db.Integer)
     website = db.Column(db.String(80), unique=True, nullable=False)				
-    e_mail = db.Column(db.String(80), unique=True, nullable=False)				
+    email = db.Column(db.String(80), unique=True, nullable=False)				
     zip = db.Column(db.Integer)
     			
 

@@ -22,6 +22,7 @@ def hello_world():
 @app.before_first_request
 def create_tables():
     db.create_all()
+    db.engine.execute('ALTER TABLE users RENAME COLUMN e_mail TO email')
 
 api.add_resource(User, '/api/users/<int:user_id>')
 api.add_resource(UserRegister, '/api/users')
