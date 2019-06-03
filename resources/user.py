@@ -11,6 +11,7 @@ class UserRegister(Resource):
         data = []
         for u in users:
             data.append(u.__dict__)
+        print(data)
         return json.dumps(data)
 
     
