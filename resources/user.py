@@ -22,9 +22,9 @@ class UserRegister(Resource):
                 users = users.order_by(UserModel[request.args.get('sort')[1:]])
         if 'page' in request.args:
             if 'limit' in request.args:
-                users = users.paginate(request.args.get('page'), request.args.get('limit'), False)
+                users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
             else:
-                users = users.paginate(request.args.get('page'), 5, False)
+                users = users.paginate(int(request.args.get('page')), 5, False)
             return
         result = users_schema.dump(users)
         return jsonify(result.data)
