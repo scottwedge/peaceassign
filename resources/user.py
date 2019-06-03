@@ -17,9 +17,9 @@ class UserRegister(Resource):
         #     users = UserModel.query.filter(or_(literal(request.args.get('name')).contains(UserModel.first_name)), literal(request.args.get('name')).contains(UserModel.last_name)))
         if 'sort' in request.args:
             if '-' in request.args.get('sort'):
-                users = users.order_by(UserModel[request.args.get('sort')[1:]].desc())
+                users = users.order_by(UserModel[request.args.get('sort')].desc())
             else:
-                users = users.order_by(UserModel[request.args.get('sort')[1:]])
+                users = users.order_by(UserModel[request.args.get('sort')])
         if 'page' in request.args:
             if 'limit' in request.args:
                 users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
