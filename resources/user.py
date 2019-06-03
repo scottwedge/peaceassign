@@ -7,8 +7,11 @@ _user_parser = reqparse.RequestParser()
 class UserRegister(Resource):
     
     def get(self):
-        users = UserModel.query.all()
-        return json.dumps([dict(user) for user in users])
+        users = UserModel.query.fetchall()
+        def result_dict(r):
+            return dict(zip(r.keys(), r))
+
+        return list(map(result_dict, users))
 
     
     def post(self, data):
