@@ -9,12 +9,12 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 class UserRegister(Resource):
-    
+
     @classmethod
     def get(self):
         users = UserModel.query.all()
-        if 'name' in request.args:
-            users = UserModel.query.filter(or_(literal(request.args.get('name')).contains(UserModel.first_name)), literal(request.args.get('name')).contains(UserModel.last_name)))
+        # if 'name' in request.args:
+        #     users = UserModel.query.filter(or_(literal(request.args.get('name')).contains(UserModel.first_name)), literal(request.args.get('name')).contains(UserModel.last_name)))
         if 'sort' in request.args:
             if '-' in request.args.get('sort'):
                 users = users.order_by(UserModel[request.args.get('sort')[1:]].desc())
