@@ -28,9 +28,9 @@ def create_tables():
     db.create_all()
     data = []
     with open('data.json') as f:
-        for line in f:
-            print(line)
-            data.append(json.loads(line))
+        
+        print(json.loads(f.read()))
+            
 
     fields = [
         "id",
