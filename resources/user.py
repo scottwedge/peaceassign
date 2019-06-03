@@ -1,18 +1,16 @@
 from flask_restful import Resource, reqparse
-from models.user import UserModel
+from models.user import UserModel, UserSchema
 from flask import jsonify
+from app import UserSchema
 
 _user_parser = reqparse.RequestParser()
-
+users_schema = UserSchema()
 class UserRegister(Resource):
     
     def get(self):
         users = UserModel.query.all()
-        data = []
-        for u in users:
-            data.append(u.__dict__)
-        print(data)
-        return jsonify(json_list = data)
+        result = users_schema.dump(users)
+        return jsonify(result.data)
 
     
     def post(self, data):
