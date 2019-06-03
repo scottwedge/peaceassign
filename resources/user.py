@@ -2,7 +2,6 @@ from flask_restful import Resource, reqparse
 from models.user import UserModel
 from models.schema import UserSchema
 from flask import jsonify, request
-
 _user_parser = reqparse.RequestParser()
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
@@ -10,7 +9,11 @@ users_schema = UserSchema(many=True)
 class UserRegister(Resource):
     
     def get(self):
+
+
         users = UserModel.query.all()
+        if 'page' in request.args:
+            return
         result = users_schema.dump(users)
         print(result)
         return jsonify(result.data)
@@ -36,7 +39,7 @@ class User(Resource):
         if not user:
             return {'message': 'User Not Found'}, 404
         result = user_schema.dump(user)
-        return jsonify(result.data), 200
+        return jsonify(result.data)
 
     @classmethod
     def delete(cls, user_id: int):
@@ -44,5 +47,17 @@ class User(Resource):
         if not user:
             return {'message': 'User Not Found'}, 404
         user.delete_from_db()
-        return {'message': 'User deleted.'}, 200
+        return {'message': 'User deleted.'}
+
+    @classmethod
+    def put(cls, user_id: int):
+        data = request.get_data()
+        user = UserModel.find_by_id(user_id)
+        for key, value in data.items():
+            if args[key] is not None:
+                setattr(user, key, value)
+        UserModel.commit()
+        user = UserModel.find_by_id(user_id)
+
+
 
