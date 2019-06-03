@@ -44,8 +44,8 @@ def create_tables():
 
     for item in data:
         my_data = [str(item[field]) for field in fields]
-        insert_query = "INSERT INTO users VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        db.engine.execute(insert_query, my_data)
+        insert_query = "INSERT INTO users VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {})".format(my_data[0],my_data[1],my_data[2],my_data[3],my_data[4],my_data[5],my_data[6],my_data[7],my_data[8])
+        db.engine.execute(insert_query)
 
 api.add_resource(User, '/api/users/<int:user_id>')
 
