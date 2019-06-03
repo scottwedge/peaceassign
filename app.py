@@ -3,13 +3,8 @@ from db import db
 from resources.user import User
 import json
 
-
 from flask import Flask
 from flask_restful import Api
-
-
-
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
@@ -50,7 +45,8 @@ def create_tables():
     for item in data:
         my_data = [item[field] for field in fields]
         insert_query = "INSERT INTO users VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        db.execute(insert_query, tuple(my_data))
+        with db.connect() as con:
+            con.execute(insert_query, tuple(my_data))
 
 api.add_resource(User, '/api/users/<int:user_id>')
 
