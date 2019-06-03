@@ -8,10 +8,10 @@ class UserRegister(Resource):
     
     def get(self):
         users = UserModel.query.all()
-        def result_dict(r):
-            return dict(zip(r.keys(), r))
-
-        return list(map(result_dict, users))
+        data = []
+        for u in users:
+            data.append(u.__dict__)
+        return json.dumps(data)
 
     
     def post(self, data):
