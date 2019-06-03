@@ -25,7 +25,7 @@ def create_tables():
     db.create_all()
 
 
-api.add_resource(User, 'api/users/<int:user_id>')
+api.add_resource(User, '/api/users/<int:user_id>')
 # api.add_resource(UserRegister, 'api/users')
 
 
