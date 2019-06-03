@@ -14,7 +14,7 @@ class UserRegister(Resource):
     def get(self):
         users = UserModel.query
         if 'name' in request.args:
-            users = users.filter(or_(UserModel.first_name.like(%request.args.get('name')%), UserModel.last_name.like(%request.args.get('name')%))
+            users = users.filter(or_(UserModel.first_name.like('%' + request.args.get('name') + '%'), UserModel.last_name.like('%' + request.args.get('name') + '%'))
         if 'sort' in request.args:
             if '-' in request.args.get('sort'):
                 users = users.order_by(UserModel["age"].desc())
