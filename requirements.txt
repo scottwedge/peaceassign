@@ -1,7 +1,8 @@
 Flask
 Flask-RESTful
 Flask-SQLAlchemy
-Flask-Marshmallow
 uwsgi
 psycopg2
 gunicorn
+Flask-Marshmallow
+marshmallow-sqlalchemy
