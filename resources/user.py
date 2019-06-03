@@ -8,9 +8,9 @@ class UserRegister(Resource):
     
     def get(self):
         user = UserModel.query.all()
-        for i in user:
-            print(user.json())
-        return json.loads(user).json(), 200
+        
+        return json.dumps([dict(r) for r in res])
+
     
     def post(self, data):
         data = _user_parser.parse_args()
