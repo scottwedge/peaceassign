@@ -1,7 +1,7 @@
 import os
 from db import db
 from ma import ma
-from resources.user import User, UserRegister
+from resources.user import User, Users
 import json
 from flask import Flask
 from flask_restful import Api
