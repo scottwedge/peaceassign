@@ -36,7 +36,7 @@ class Users(Resource):
         else: 
             users = users.all()
         result = users_schema.dump(users)
-        return jsonify(result.data), 200
+        return jsonify(result.data)
 
     @classmethod
     def post(self):
@@ -60,8 +60,7 @@ class User(Resource):
         if not user:
             return {'message': 'User Not Found'}, 404
         result = user_schema.dump(user)
-        return jsonify(result.data), 200
-
+        return jsonify(result.data)
     @classmethod
     def delete(cls, user_id: int):
         user = UserModel.find_by_id(user_id)
