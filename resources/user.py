@@ -13,20 +13,29 @@ class UserRegister(Resource):
     @classmethod
     def get(self):
         users = UserModel.query
-        if 'name' in request.args:
-            users = users.filter(or_(UserModel.first_name.like('%' + request.args.get('name') + '%'), UserModel.last_name.like('%' + request.args.get('name') + '%')))
-        if 'sort' in request.args:
-            if '-' in request.args.get('sort'):
-                users = users.order_by(UserModel["age"].desc())
-            else:
-                param = str(request.args.get('sort'))
-                users = users.order_by(UserModel["age"])
-        if 'page' in request.args:
-            if 'limit' in request.args:
-                users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
-            else:
-                users = users.paginate(int(request.args.get('page')), 5, False)
-            users = users.items
+        args = request.args.to_dict()
+        if args:
+            if 'name' in request.args:
+                users = users.filter(or_(UserModel.first_name.like('%' + request.args.get('name') + '%'), UserModel.last_name.like('%' + request.args.get('name') + '%')))
+            if 'sort' in request.args:
+                if '-' in request.args.get('sort'):
+                    if 'age' in request.args.get('sort'):
+                        users = users.order_by(UserModel.age.desc())
+                    elif 'zip' in request.args.get('sort'):
+                        users = users.order_by(UserModel.zip.desc())
+                else:
+                    if 'age' in request.args.get('sort'):
+                        users = users.order_by(UserModel.age)
+                    elif 'zip' in request.args.get('sort'):
+                        users = users.order_by(UserModel.zip)
+            if 'page' in request.args:
+                if 'limit' in request.args:
+                    users = users.paginate(int(request.args.get('page')), int(request.args.get('limit')), False)
+                else:
+                    users = users.paginate(int(request.args.get('page')), 5, False)
+                users = users.items
+        else: 
+            users = users.all()
         result = users_schema.dump(users)
         return jsonify(result.data)
 
