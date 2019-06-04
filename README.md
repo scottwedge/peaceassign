@@ -8,7 +8,7 @@ A flask Application
 
 * Git clone this repo to your PC
     ```
-        $ git clone git@github.com:gitgik/flask-rest-api.git
+        $ git clone git@github.com:lavi061997/peaceassign.git
     ```
 
 
