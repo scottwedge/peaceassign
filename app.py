@@ -16,7 +16,7 @@ api = Api(app)
 
 @app.route('/')
 def hello_world():
-	return 'Hello world'
+	return 'Get started from /api/users and /api/users/:id'
 
 
 @app.before_first_request
