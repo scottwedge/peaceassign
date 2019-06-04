@@ -24,10 +24,9 @@ def create_tables():
     db.create_all()
 
 api.add_resource(User, '/api/users/<int:user_id>')
-api.add_resource(UserRegister, '/api/users')
+api.add_resource(Users, '/api/users')
 
 db.init_app(app)
 
 if __name__ == '__main__':
-    
     app.run(port=5000, debug=True)

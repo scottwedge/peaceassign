@@ -1,14 +1,13 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
 from models.user import UserModel
 from models.schema import UserSchema
 from flask import jsonify, request
 from sqlalchemy import literal,or_
 
-_user_parser = reqparse.RequestParser()
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
-class UserRegister(Resource):
+class Users(Resource):
 
     @classmethod
     def get(self):
@@ -37,7 +36,7 @@ class UserRegister(Resource):
         else: 
             users = users.all()
         result = users_schema.dump(users)
-        return jsonify(result.data)
+        return jsonify(result.data), 200
 
     @classmethod
     def post(self):
@@ -61,7 +60,7 @@ class User(Resource):
         if not user:
             return {'message': 'User Not Found'}, 404
         result = user_schema.dump(user)
-        return jsonify(result.data)
+        return jsonify(result.data), 200
 
     @classmethod
     def delete(cls, user_id: int):
@@ -78,8 +77,6 @@ class User(Resource):
         for key, value in data.items():
             if args[key] is not None:
                 setattr(user, key, value)
-        UserModel.commit()
-        user = UserModel.find_by_id(user_id)
-
+        return {}, 200
 
 
