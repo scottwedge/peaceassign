@@ -2,7 +2,7 @@ import json
 import unittest
 from run import app
 
-class TestMyApp(unnittest.TestCase):
+class TestMyApp(unittest.TestCase):
     """Tests"""
 
     def setUp(self):
@@ -46,4 +46,4 @@ class TestMyApp(unnittest.TestCase):
 
 
 if __name__ == '__main__':
-    unnittest.main()
+    unittest.main()
